@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import MovieCard from './components/movie';
+import './index.css';
 
-function App() {
+export default function App() {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    fetch('https://swapi.dev/api/films/').then((rawData) => rawData.json())
+      .then((response) => {
+        setState(response.results);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>Star Wars</h1>
       </header>
+
+      <div>
+        {state.map((item) => (
+          <MovieCard
+            title={item.title}
+            date={item.release_date}
+            description={item.opening_crawl}
+          />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;
+        
