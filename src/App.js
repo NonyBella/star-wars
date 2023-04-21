@@ -18,15 +18,17 @@ export default function App() {
         <h1>Star Wars</h1>
       </header>
 
-      <div>
+      <div className="grid-container">
         {state.map((item) => (
           <MovieCard
             title={item.title}
             date={item.release_date}
             description={item.opening_crawl}
           />
+          
         ))}
       </div>
+       
     </div>
   );
 }
