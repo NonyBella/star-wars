@@ -1,25 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from './components/MovieCard';
-import MovieDetail from "./components/MovieDetail";
 import './index.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-export function AppRouter() {
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <App />
-          </Route>
-          <Route path="/about">
-            <MovieDetail />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
 
 export default function App() {
   const [state, setState] = useState([]);
@@ -41,9 +22,11 @@ export default function App() {
       {state?.length == 0 && <img src="/loader.svg" />}
 
       <div className="grid-container">
-        {state.map((item) => (
+        {state && state.map((item) => (
           <MovieCard
+            key={item.episode_id}
             title={item.title}
+            id={item.episode_id}
             date={item.release_date}
             description={item.opening_crawl}
           />
