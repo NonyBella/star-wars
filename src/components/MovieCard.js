@@ -11,7 +11,7 @@ export default function MovieCard(props) {
         <br />
         {props.description}
         <br />
-        <Link to={`/movie/${props.id}`} { ...props }>Read More</Link>
+        <Link to={`/movie/${props.id}`}>Read More</Link>
       </div>
     </div>
   

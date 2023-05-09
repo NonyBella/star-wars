@@ -22,11 +22,11 @@ export default function App() {
       {state?.length == 0 && <img src="/loader.svg" />}
 
       <div className="grid-container">
-        {state && state.map((item) => (
+        {state && state.map((item, index) => (
           <MovieCard
             key={item.episode_id}
             title={item.title}
-            id={item.episode_id}
+            id={index + 1}
             date={item.release_date}
             description={item.opening_crawl}
           />
